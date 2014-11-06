@@ -201,6 +201,8 @@ public class DonNhapHangDal {
                 
             }
             
+            resultSet.close();
+            
             
         } catch (SQLException ex) {
             Logger.getLogger(DonNhapHangDal.class.getName()).log(Level.SEVERE, null, ex);

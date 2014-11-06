@@ -39,8 +39,8 @@ public class DatabaseManager {
             resultSet=statement.executeQuery(sqlCode);
           
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null,"Có lỗi xảy ra.");
-          
+          JOptionPane.showMessageDialog(null,"Có lỗi xảy ra.");
+          //JOptionPane.showMessageDialog(null,ex);
         }
         
          return resultSet;
