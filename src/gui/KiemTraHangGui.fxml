@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="606.0" prefWidth="895.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.KiemTraHangController">
+   <children>
+      <Label layoutX="187.0" layoutY="14.0" text="Tìm Kiếm và kiểm tra Hàng" textFill="#0313b9">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="44.0" layoutY="62.0" text="Tìm kiếm theo Mã hàng" />
+      <TextField fx:id="txtMaHang" layoutX="257.0" layoutY="54.0" />
+      <Button layoutX="414.0" layoutY="54.0" mnemonicParsing="false" onAction="#handleTimMaHang" text="Tìm" />
+      <Button layoutX="414.0" layoutY="89.0" mnemonicParsing="false" onAction="#handleTimTenHang" text="Tìm" />
+      <TextField fx:id="txtTenHang" layoutX="257.0" layoutY="89.0" />
+      <Label layoutX="44.0" layoutY="97.0" text="Tìm kiếm theo tên hàng" />
+      <Button layoutX="414.0" layoutY="124.0" mnemonicParsing="false" onAction="#handleTimTenNcc" text="Tìm" />
+      <Label layoutX="44.0" layoutY="132.0" text="Tìm kiếm theo nhà cung cấp" />
+      <Label layoutX="44.0" layoutY="168.0" text="Tìm kiếm theo loại hàng" />
+      <Button layoutX="414.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleTimLoaiHang" text="Tìm" />
+      <ComboBox fx:id="cbTenNcc" layoutX="256.0" layoutY="124.0" prefWidth="150.0" />
+      <ComboBox fx:id="cbLoaiHang" layoutX="256.0" layoutY="160.0" prefWidth="150.0" />
+      <Button layoutX="256.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleTimHangCon" text="Tìm" />
+      <Label layoutX="44.0" layoutY="201.0" text="Tìm kiếm hàng còn trong kho" />
+      <Label layoutX="44.0" layoutY="232.0" text="Tìm kiếm hàng khong còn trong kho" />
+      <Button layoutX="256.0" layoutY="229.0" mnemonicParsing="false" onAction="#handleTimHangHet" text="Tìm" />
+      <Label layoutX="44.0" layoutY="268.0" text="Tìm kiếm hàng có ngay HSD trong khoảng" />
+      <DatePicker fx:id="tuNgay" layoutX="79.0" layoutY="293.0" />
+      <Label layoutX="263.0" layoutY="297.0" text="đến" />
+      <DatePicker fx:id="denNgay" layoutX="299.0" layoutY="293.0" />
+      <Label layoutX="48.0" layoutY="297.0" text="từ" />
+      <TableView fx:id="tbHang" layoutX="20.0" layoutY="336.0" prefHeight="226.0" prefWidth="784.0">
+        <columns>
+          <TableColumn fx:id="maHang" prefWidth="75.0" text="Mã Hàng" />
+          <TableColumn fx:id="tenHang" prefWidth="75.0" text="Tên Hàng" />
+            <TableColumn fx:id="donViTinh" prefWidth="75.0" text="Đơn vị tính" />
+            <TableColumn fx:id="loaiHang" prefWidth="75.0" text="Loại hàng" />
+            <TableColumn fx:id="ncc" prefWidth="93.0" text="Nhà cung cấp" />
+            <TableColumn fx:id="giaNhap" prefWidth="57.0" text="Giá nhập" />
+            <TableColumn fx:id="giaBan" prefWidth="75.0" text="Giá Bán" />
+            <TableColumn fx:id="ngayHSD" prefWidth="75.0" text="Ngày HSD" />
+            <TableColumn fx:id="soLuong" prefWidth="75.0" text="Số lượng" />
+            <TableColumn fx:id="ghiChu" prefWidth="102.0" text="Ghi chú" />
+        </columns>
+      </TableView>
+      <Button layoutX="23.0" layoutY="572.0" mnemonicParsing="false" text="In bao cáo" />
+      <Button layoutX="492.0" layoutY="293.0" mnemonicParsing="false" onAction="#handleTimHangHetHan" text="Tìm" />
+   </children>
+</AnchorPane>

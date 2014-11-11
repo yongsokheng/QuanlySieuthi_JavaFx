@@ -11,31 +11,33 @@ import java.time.LocalDate;
  *
  * @author YONGSOKHENG
  */
-public class HangDto {
+public class TimHangDto {
     
     private String maHang;
     private String tenHang;
     private String donViTinh;
-    private String ghiChu;
-    private String maLoaiHang;
-    private String maNcc;
+    private String loaiHang;
+    private String ncc;
     private double giaNhap;
     private double giaBan;
-    private LocalDate ngayHSD;
+    private String ngayHSD;
+    private double soLuong;
+    private String ghiChu;
 
-    public HangDto() {
+    public TimHangDto() {
     }
 
-    public HangDto(String maHang, String tenHang, String donViTinh, String ghiChu, String maLoaiHang, String maNcc, double giaNhap, double giaBan, LocalDate ngayHSD) {
+    public TimHangDto(String maHang, String tenHang, String donViTinh, String loaiHang, String ncc, double giaNhap, double giaBan, String ngayHSD, double soLuong, String ghiChu) {
         this.maHang = maHang;
         this.tenHang = tenHang;
         this.donViTinh = donViTinh;
-        this.ghiChu = ghiChu;
-        this.maLoaiHang = maLoaiHang;
-        this.maNcc = maNcc;
+        this.loaiHang = loaiHang;
+        this.ncc = ncc;
         this.giaNhap = giaNhap;
         this.giaBan = giaBan;
         this.ngayHSD = ngayHSD;
+        this.soLuong = soLuong;
+        this.ghiChu = ghiChu;
     }
 
     /**
@@ -81,45 +83,31 @@ public class HangDto {
     }
 
     /**
-     * @return the ghiChu
+     * @return the loaiHang
      */
-    public String getGhiChu() {
-        return ghiChu;
+    public String getLoaiHang() {
+        return loaiHang;
     }
 
     /**
-     * @param ghiChu the ghiChu to set
+     * @param loaiHang the loaiHang to set
      */
-    public void setGhiChu(String ghiChu) {
-        this.ghiChu = ghiChu;
+    public void setLoaiHang(String loaiHang) {
+        this.loaiHang = loaiHang;
     }
 
     /**
-     * @return the maLoaiHang
+     * @return the ncc
      */
-    public String getMaLoaiHang() {
-        return maLoaiHang;
+    public String getNcc() {
+        return ncc;
     }
 
     /**
-     * @param maLoaiHang the maLoaiHang to set
+     * @param ncc the ncc to set
      */
-    public void setMaLoaiHang(String maLoaiHang) {
-        this.maLoaiHang = maLoaiHang;
-    }
-
-    /**
-     * @return the maNcc
-     */
-    public String getMaNcc() {
-        return maNcc;
-    }
-
-    /**
-     * @param maNcc the maNcc to set
-     */
-    public void setMaNcc(String maNcc) {
-        this.maNcc = maNcc;
+    public void setNcc(String ncc) {
+        this.ncc = ncc;
     }
 
     /**
@@ -153,19 +141,46 @@ public class HangDto {
     /**
      * @return the ngayHSD
      */
-    public LocalDate getNgayHSD() {
+    public String getNgayHSD() {
         return ngayHSD;
     }
 
     /**
      * @param ngayHSD the ngayHSD to set
      */
-    public void setNgayHSD(LocalDate ngayHSD) {
+    public void setNgayHSD(String ngayHSD) {
         this.ngayHSD = ngayHSD;
+    }
+
+    /**
+     * @return the soLuong
+     */
+    public double getSoLuong() {
+        return soLuong;
+    }
+
+    /**
+     * @param soLuong the soLuong to set
+     */
+    public void setSoLuong(double soLuong) {
+        this.soLuong = soLuong;
+    }
+
+    /**
+     * @return the ghiChu
+     */
+    public String getGhiChu() {
+        return ghiChu;
+    }
+
+    /**
+     * @param ghiChu the ghiChu to set
+     */
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
     }
     
     
-
     
     
 }
