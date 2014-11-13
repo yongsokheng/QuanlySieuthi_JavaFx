@@ -21,14 +21,14 @@ public class NccDal {
     ResultSet resultSet;
     private ObservableList<NccDto> data=FXCollections.observableArrayList();
     
-    public ObservableList<NccDto> loadData()
+    public ObservableList<NccDto> loadData(ResultSet resultSet)
     {
         try {
                 String maNcc;
                 String tenNcc;
                 String soDt;
                 String diaChi;
-                resultSet=db.loadData("SELECT * FROM nhacungcap");
+ 
                 while(resultSet.next())
                 {
                     maNcc=resultSet.getString("maNCC");
@@ -45,6 +45,24 @@ public class NccDal {
         
         return data;
     
+    }
+    
+    public ResultSet getNcc()
+    {
+        resultSet=db.loadData("SELECT * FROM nhacungcap");
+        return resultSet;
+    }
+    
+    public ResultSet timNccTheoMa(NccDto nccDto)
+    {
+        resultSet=db.loadData("SELECT * FROM nhacungcap WHERE maNCC='"+nccDto.getMaNcc()+"'");
+        return resultSet;
+    }
+    
+    public ResultSet timNccTheoTen(NccDto nccDto)
+    {
+        resultSet=db.loadData("SELECT * FROM nhacungcap WHERE tenNCC like '%"+nccDto.getTenNcc()+"%'");
+        return resultSet;
     }
     
     public int saveData(NccDto nccDto)

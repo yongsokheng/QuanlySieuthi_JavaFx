@@ -24,8 +24,8 @@
       <Button layoutX="109.0" layoutY="183.0" mnemonicParsing="false" onAction="#handleButtonThemMoi" prefHeight="25.0" prefWidth="85.0" text="Thêm mói" />
       <TableView fx:id="tbUser" layoutX="83.0" layoutY="239.0" prefHeight="200.0" prefWidth="363.0">
         <columns>
-          <TableColumn fx:id="colUser" prefWidth="139.0" text="Username" />
-          <TableColumn fx:id="colRole" prefWidth="168.0" text="Role" />
+          <TableColumn fx:id="colUser" prefWidth="162.0" text="Username" />
+          <TableColumn fx:id="colRole" prefWidth="187.0" text="Role" />
         </columns>
       </TableView>
       <Button layoutX="264.0" layoutY="183.0" mnemonicParsing="false" onAction="#handleButtonXoa" text="Xóa" />

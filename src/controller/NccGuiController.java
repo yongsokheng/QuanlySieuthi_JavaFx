@@ -58,7 +58,7 @@ public class NccGuiController implements Initializable {
          soDt.setCellValueFactory(new PropertyValueFactory("soDt"));
          diaChi.setCellValueFactory(new PropertyValueFactory("diaChi"));
          tblNcc.getItems().clear();
-         tblNcc.setItems(nccDal.loadData());
+         tblNcc.setItems(nccDal.loadData(nccDal.getNcc()));
     }
     
     public void themmoi()

@@ -19,7 +19,7 @@ public class Sieuthi extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/UserGui.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/gui/TimNcc.fxml"));
         
         Scene scene = new Scene(root);
         
