@@ -81,7 +81,7 @@ public class FormValidation {
         
         if(!textField.getText().trim().isEmpty())
         {
-            if(textField.getText().trim().matches("^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{3,4})$"))
+            if(textField.getText().trim().matches("^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{3,5})$"))
             {
                 textField.getStyleClass().removeAll("error"); 
                 textField.setPromptText("");
