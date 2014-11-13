@@ -11,23 +11,21 @@ package dto;
  */
 public class LoginDto {
     
-    private int id;
     private String username;
     private String password;
+    private String role;
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
+    public LoginDto() {
     }
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
+    public LoginDto( String username, String password, String role) {
+       
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
+
+
 
     /**
      * @return the username
@@ -55,6 +53,20 @@ public class LoginDto {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return the role
+     */
+    public String getRole() {
+        return role;
+    }
+
+    /**
+     * @param role the role to set
+     */
+    public void setRole(String role) {
+        this.role = role;
     }
     
     

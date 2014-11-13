@@ -39,7 +39,7 @@ public class DatabaseManager {
             resultSet=statement.executeQuery(sqlCode);
           
         } catch (SQLException ex) {
-       //   JOptionPane.showMessageDialog(null,"Có lỗi xảy ra.");
+          //JOptionPane.showMessageDialog(null,"Có lỗi xảy ra.");
           JOptionPane.showMessageDialog(null,ex);
         }
         
@@ -57,7 +57,8 @@ public class DatabaseManager {
             connection.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Có lỗi. Hãy kiểm tra lại.");
+           // JOptionPane.showMessageDialog(null, "Có lỗi. Hãy kiểm tra lại.");
+            JOptionPane.showMessageDialog(null,ex);
             
         }
        
