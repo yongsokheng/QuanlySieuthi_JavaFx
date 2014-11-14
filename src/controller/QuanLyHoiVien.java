@@ -170,7 +170,7 @@ public class QuanLyHoiVien implements Initializable {
                 }
             }
             else
-               JOptionPane.showMessageDialog(null, "MaNCC hoặc TenNCC không thể trống"); 
+               JOptionPane.showMessageDialog(null, "MãHộiViên hoặc HọTênHộiViên hoặc Giới tính hoặc Điện Thoại hoặc Địa chỉ hoặc Tên cơ quản  không thể trống"); 
     }
      
      
