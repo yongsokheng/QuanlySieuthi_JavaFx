@@ -81,8 +81,8 @@ public class QuanLyHoiVien implements Initializable {
     
   
     
-   dalHoiVien dalhoivien=new dalHoiVien();
-   dtoHoiVien dtoHoiVien=new dtoHoiVien();
+   dalHoiVien dalHV=new dalHoiVien();
+   dtoHoiVien dtoHv=new dtoHoiVien();
     
     public int validate()
     {
@@ -117,7 +117,7 @@ public class QuanLyHoiVien implements Initializable {
         diaChi.setCellValueFactory(new PropertyValueFactory("diaChi"));
          
          quanLyHoiVien.getItems().clear();
-         quanLyHoiVien.setItems(dalhoivien.loadData());
+         quanLyHoiVien.setItems(dalHV.loadData());
     }
    
     
@@ -155,17 +155,18 @@ public class QuanLyHoiVien implements Initializable {
      private void handleButtonLuu(ActionEvent event) {
             if( validate()==1 )
             {
-                dtoHoiVien.setMaHoiVien(txtMaHoiVien.getText());
-                dtoHoiVien.setHoTenHoiVien(txtHoTenHoiVien.getText());
-                dtoHoiVien.setGioiTinh(cbGioiTinh.getSelectionModel().getSelectedItem().toString());
-                dtoHoiVien.setDiaChi(txtDiaChi.getText());
-                dtoHoiVien.setDienThoai(txtDienThoai.getText());
-                dtoHoiVien.setTenCoQuan(txtTenCoQuan.getText());
+                dtoHv.setMaHoiVien(txtMaHoiVien.getText());
+                dtoHv.setHoTenHoiVien(txtHoTenHoiVien.getText());
+                dtoHv.setGioiTinh(cbGioiTinh.getSelectionModel().getSelectedItem().toString());
+                dtoHv.setDiaChi(txtDiaChi.getText());
+                dtoHv.setDienThoai(txtDienThoai.getText());
+                dtoHv.setTenCoQuan(txtTenCoQuan.getText());
 
-                if( dalhoivien.saveData(dtoHoiVien) > 0 )
+                if( dalHV.saveData(dtoHv) > 0 )
                 {
                   //  loadData();
                     JOptionPane.showMessageDialog(null, "Lưu thành công");
+                    loadData();
                 }
             }
             else
@@ -173,10 +174,59 @@ public class QuanLyHoiVien implements Initializable {
     }
      
      
+     
      @FXML
     private void handleButtonXoa(ActionEvent event) 
     {
+      int i=quanLyHoiVien.getSelectionModel().getSelectedIndex();
       
+      if(i>=0)
+      {
+         dtoHv.setMaHoiVien(quanLyHoiVien.getSelectionModel().getSelectedItem().getMaHoiVien());
+         if(dalHV.deleteData(dtoHv) > 0)
+        {
+            loadData();
+            
+            JOptionPane.showMessageDialog(null, "Xóa thành công");
+        }
+          
+      }
+      else
+          JOptionPane.showMessageDialog(null, "Hãy chọn một sản phẩm để xóa.");
+         
+    }
+     
+     
+   
+    @FXML
+    private void handleButtonUpdate(ActionEvent event) 
+    {
+      int i=quanLyHoiVien.getSelectionModel().getSelectedIndex();
+      
+      if(i>=0)
+      {
+            
+               dtoHv.setMaHoiVien(txtMaHoiVien.getText());
+               dtoHv.setHoTenHoiVien(txtHoTenHoiVien.getText());
+               dtoHv.setGioiTinh(cbGioiTinh.getSelectionModel().getSelectedItem().toString());
+               dtoHv.setDienThoai(txtDienThoai.getText());
+                dtoHv.setTenCoQuan(txtTenCoQuan.getText());
+                dtoHv.setDiaChi(txtDiaChi.getText());
+               String ma=quanLyHoiVien.getSelectionModel().getSelectedItem().getMaHoiVien();
+
+               if(dalHV.updateData(dtoHv, ma) >0)
+              {
+                  loadData();
+                 
+                  JOptionPane.showMessageDialog(null, "Cấp nhật thành công");
+              }
+
+            
+            
+      }
+      else
+            JOptionPane.showMessageDialog(null, "Hãy chọn một sản phẩm để xóa.");
+  
     }
     
     
