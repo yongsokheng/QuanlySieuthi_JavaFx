@@ -24,7 +24,6 @@
       <TextField fx:id="txtDiaChi" layoutX="128.0" layoutY="308.0" AnchorPane.leftAnchor="128.0" />
       <TextField fx:id="txtTenCoQuan" layoutX="128.0" layoutY="266.0" AnchorPane.leftAnchor="128.0" />
       <ComboBox fx:id="cbGioiTinh" layoutX="128.0" layoutY="175.0" prefHeight="23.0" prefWidth="144.0" AnchorPane.leftAnchor="128.0" />
-      <Button layoutX="488.0" layoutY="437.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="81.0" text="Tìm kiếm" />
       <TableView fx:id="quanLyHoiVien" layoutX="294.0" layoutY="94.0" prefHeight="333.0" prefWidth="470.0">
          <columns>
             <TableColumn fx:id="maHoiVien" prefWidth="48.0" text="Số TT" />
