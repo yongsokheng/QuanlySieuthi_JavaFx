@@ -49,22 +49,22 @@ public class NhanVienDal {
     
     }
     
-    public int saveData(NhanVienDto nccDto)
+    public int saveData(NhanVienDto nvdto)
     {
         String sql="INSERT INTO nhanvien VALUES('"+nvdto.getMaNhanVien()+"','"+nvdto.getTenNhanVien()+"','"+nvdto.getDienThoai()+"','"+nvdto.getMoTa()+"')";       
         int result=db.executeData(sql);
-        JOptionPane.showMessageDialog(null,"result="+result);
+       
         return result;
     }
     
-    public int deleteData(NhanVienDto nccDto)
+    public int deleteData(NhanVienDto nvdto)
     {
       String sql="DELETE FROM NhanVien WHERE maNV='"+nvdto.getMaNhanVien()+"'";
       int result=db.executeData(sql);
       return result;
     }
     
-   public int updateData(NhanVienDto nccDto, String ma)
+   public int updateData(NhanVienDto nvdto, String ma)
    {
       String sql="UPDATE NhanVien SET maNV='"+nvdto.getMaNhanVien()+"',tenNhanVien='"+nvdto.getTenNhanVien()+"', dienThoaiLH='"+nvdto.getDienThoai()+"',moTa='"+nvdto.getMoTa()+"' WHERE maNV='"+ma+"'";
       int result=db.executeData(sql);

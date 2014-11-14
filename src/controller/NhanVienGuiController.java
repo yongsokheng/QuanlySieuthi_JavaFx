@@ -52,7 +52,20 @@ public class NhanVienGuiController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+         loadData();
+             
+            // Handle ListView selection changes.
         
+            tblNhanVien.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                if(tblNhanVien.getSelectionModel().getSelectedIndex()>=0)
+                {
+                    txtMa.setText(newValue.getMaNhanVien());
+                    txtTen.setText(newValue.getTenNhanVien());
+                    txtSoDt.setText(newValue.getDienThoai());
+                    txtMota.setText(newValue.getMoTa());
+                }
+            
+         });
     }
 
     public void themmoi() {
@@ -96,17 +109,65 @@ public class NhanVienGuiController implements Initializable {
                 nvDto.setTenNhanVien(txtTen.getText());
                 nvDto.setDienThoai(txtSoDt.getText());
                 nvDto.setMoTa(txtMota.getText());
-                JOptionPane.showMessageDialog(null, "validate thanh cong");
+              
                 if(nvDal.saveData(nvDto)>0)
                 {
-                    JOptionPane.showMessageDialog(null, "than cong saveData");
-                    loadData();
-                    JOptionPane.showMessageDialog(null,"thanh cong loaddata");
-                    themmoi();
-                    JOptionPane.showMessageDialog(null, "Lưu thành công");
+                   loadData();
+                   themmoi();
+                  
                 }
             }
          
     }
+    @FXML
+    private void handleButtonXoa(ActionEvent event) 
+    {
+      int i=tblNhanVien.getSelectionModel().getSelectedIndex();
+     
+      if(i>=0)
+      {
+         nvDto.setMaNhanVien(tblNhanVien.getSelectionModel().getSelectedItem().getMaNhanVien());
+         if(nvDal.deleteData(nvDto)>0)
+        {
+            loadData();
+            themmoi();
+            JOptionPane.showMessageDialog(null, "Xóa thành công");
+        }
+          
+      }
+      else
+          JOptionPane.showMessageDialog(null, "Hãy chọn một sản phẩm để xóa.");
+         
+    }
+    @FXML
+    private void handleButtonCapNhat(ActionEvent event) 
+    {
+      int i=tblNhanVien.getSelectionModel().getSelectedIndex();
+      
+      if(i>=0)
+      {
+            if(validate())
+            {
+               nvDto.setMaNhanVien(txtMa.getText());
+               nvDto.setTenNhanVien(txtTen.getText());
+               nvDto.setDienThoai(txtSoDt.getText());
+               nvDto.setMoTa(txtMota.getText());
+               String ma=tblNhanVien.getSelectionModel().getSelectedItem().getMaNhanVien();
+
+               if(nvDal.updateData(nvDto,ma)>0)
+              {
+                  loadData();
+                  themmoi();
+                  JOptionPane.showMessageDialog(null, "Cấp nhật thành công");
+              }
+
+            }
+            
+      }
+      else
+            JOptionPane.showMessageDialog(null, "Hãy chọn một sản phẩm để xóa.");
+  
+    }
+    
     
 }

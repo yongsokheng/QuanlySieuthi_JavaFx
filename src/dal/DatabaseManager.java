@@ -34,7 +34,7 @@ public class DatabaseManager {
     public ResultSet loadData(String sqlCode)
     {
         try {
-            connection=DriverManager.getConnection(DATABASE,"root","");
+            connection=DriverManager.getConnection(DATABASE,"root","12345");
             statement=connection.createStatement();
             resultSet=statement.executeQuery(sqlCode);
           
@@ -50,7 +50,7 @@ public class DatabaseManager {
     {
         int result=0;
         try {
-            connection=DriverManager.getConnection(DATABASE,"root","");
+            connection=DriverManager.getConnection(DATABASE,"root","12345");
             statement=connection.createStatement();
             result=statement.executeUpdate(sqlCode);
             statement.close();
