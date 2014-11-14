@@ -72,16 +72,16 @@ public class dalHoiVien {
         return result;
     }
     
-    public int deleteData(dtoHoiVien dtoHoiVien)
+    public int deleteData(dtoHoiVien dtoHv)
     {
-      String sql="DELETE FROM hoivien WHERE maHoiVien='"+dtoHoiVien.getMaHoiVien()+"'";
+      String sql="DELETE FROM hoivien WHERE maHoiVien='"+dtoHv.getMaHoiVien()+"'";
       int result=db.executeData(sql);
       return result;
     }
     
    public int updateData(dtoHoiVien dtoHoiVien, String ma)
    {
-      String sql="UPDATE hoivien SET maHoiVien='"+ dtoHoiVien.getMaHoiVien()+"',tenHoiVien='"+ dtoHoiVien.getHoTenHoiVien()+"', GoiTinh='"+dtoHoiVien.getGioiTinh()+"',diaChi='"+dtoHoiVien.getDiaChi()+"',DienThoai='"+dtoHoiVien.getDienThoai() + "',TenCoQuan='"+dtoHoiVien.getTenCoQuan() + "' WHERE maNCC='"+ma+"'";
+      String sql="UPDATE hoivien SET maHoiVien='"+ dtoHoiVien.getMaHoiVien()+"',tenHoiVien='"+ dtoHoiVien.getHoTenHoiVien()+"', GoiTinh='"+dtoHoiVien.getGioiTinh()+"',diaChi='"+dtoHoiVien.getDiaChi()+"',DienThoai='"+dtoHoiVien.getDienThoai() + "',TenCoQuan='"+dtoHoiVien.getTenCoQuan() + "' WHERE maHoiVien='"+ma+"'";
       int result=db.executeData(sql);
       return result;
    }
