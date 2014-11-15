@@ -218,14 +218,14 @@ public class QuanLyHoiVien implements Initializable {
               {
                   loadData();
                  
-                  JOptionPane.showMessageDialog(null, "Cấp nhật thành công");
+                  JOptionPane.showMessageDialog(null, "Update thành công");
               }
 
             
             
       }
       else
-            JOptionPane.showMessageDialog(null, "Hãy chọn một sản phẩm để xóa.");
+            JOptionPane.showMessageDialog(null, "Hãy chọn một sản phẩm để Update.");
   
     }
     
