@@ -6,6 +6,7 @@
 package controller;
 
 
+import com.mysql.jdbc.ResultSetRow;
 import dal.NhanVienDal;
 import dto.NhanVienDto;
 import java.net.URL;
@@ -13,6 +14,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -44,6 +46,8 @@ public class NhanVienGuiController implements Initializable {
     TextField txtSoDt;
     @FXML
     TextField txtMota;
+    @FXML
+    Label soNhanVien;
 
     NhanVienDal nvDal = new NhanVienDal();
     NhanVienDto nvDto = new NhanVienDto();
@@ -53,7 +57,7 @@ public class NhanVienGuiController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
          loadData();
-             
+                     
             // Handle ListView selection changes.
         
             tblNhanVien.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
