@@ -7,8 +7,10 @@
 package dal;
 
 import dto.NhanVienDto;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javax.swing.JOptionPane;
@@ -56,6 +58,7 @@ public class NhanVienDal {
        
         return result;
     }
+    
     
     public int deleteData(NhanVienDto nvdto)
     {
