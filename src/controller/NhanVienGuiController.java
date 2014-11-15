@@ -73,7 +73,7 @@ public class NhanVienGuiController implements Initializable {
     }
 
     public void themmoi() {
-        txtMa.setText("");
+        txtMa.setText("a");
         txtTen.setText("");
         txtSoDt.setText("");
         txtMota.setText("");
