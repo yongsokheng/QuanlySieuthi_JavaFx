@@ -63,7 +63,7 @@ public class NccGuiController implements Initializable {
     
     public void themmoi()
     {
-        txtMaNcc.setText("");
+        txtMaNcc.setText("jjkk");
         txtTenNcc.setText("");
         txtSoDt.setText("");
         txtDiaChi.setText("");
