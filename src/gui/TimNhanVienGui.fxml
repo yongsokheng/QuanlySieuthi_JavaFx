@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="601.0" prefWidth="797.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TimNhanVienGuiController">
+   <children>
+      <Label layoutX="78.0" layoutY="150.0" text="Mã nhân viên">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="284.0" layoutY="60.0" text="Tìm nhân viên" textFill="#5c9ee0">
+         <font>
+            <Font name="Times New Roman Bold" size="38.0" />
+         </font>
+      </Label>
+      <Label layoutX="443.0" layoutY="150.0" text="Họ tên nhân viên">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtMa" layoutX="188.0" layoutY="150.0" />
+      <TextField fx:id="txtTen" layoutX="586.0" layoutY="150.0" />
+      <TableView fx:id="tblNhanVien" layoutX="59.0" layoutY="261.0" prefHeight="288.0" prefWidth="668.0">
+         <columns>
+            <TableColumn fx:id="maNhanVien" prefWidth="117.0" text="Mã nhân viên" />
+            <TableColumn fx:id="tenNhanVien" prefWidth="171.0" text="Họ tên nhân viên" />
+            <TableColumn fx:id="soDt" prefWidth="158.0" text="Điện thoại liên hệ" />
+            <TableColumn fx:id="moTa" prefWidth="229.0" text="Mô tả" />
+         </columns>
+      </TableView>
+      <Label layoutX="376.0" layoutY="150.0" text="hoặc">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="293.0" layoutY="213.0" mnemonicParsing="false" text="Tìm kiếm" />
+      <Button layoutX="376.0" layoutY="213.0" mnemonicParsing="false" text="Hiển thị tất cả" />
+   </children>
+</AnchorPane>
