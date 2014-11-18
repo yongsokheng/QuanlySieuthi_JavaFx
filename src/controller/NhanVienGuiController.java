@@ -86,7 +86,7 @@ public class NhanVienGuiController implements Initializable {
          soDt.setCellValueFactory(new PropertyValueFactory("dienThoai"));
          moTa.setCellValueFactory(new PropertyValueFactory("moTa"));
          tblNhanVien.getItems().clear();
-         tblNhanVien.setItems(nvDal.loadData());
+         tblNhanVien.setItems(nvDal.loadData(nvDal.getNhanVien()));
     }
     @FXML
     private void handleButtonThemMoi(ActionEvent event) {

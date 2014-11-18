@@ -25,14 +25,14 @@ public class NhanVienDal {
     ResultSet resultSet;
     private ObservableList<NhanVienDto> data=FXCollections.observableArrayList();
     
-    public ObservableList<NhanVienDto> loadData()
+    public ObservableList<NhanVienDto> loadData(ResultSet resultSet)
     {
         try {
                 String maNhanVien;
                 String tenNhanvien;
                 String soDienThoaiNhanVien;
                 String moTaNhanVien;
-                resultSet=db.loadData("SELECT * FROM nhanvien");
+               
                 while(resultSet.next())
                 {
                     maNhanVien=resultSet.getString("maNV");
@@ -74,4 +74,9 @@ public class NhanVienDal {
       return result;
    }
     
+    public ResultSet getNhanVien()
+    {
+        resultSet=db.loadData("SELECT * FROM NhanVien");
+        return resultSet;
+    }
 }

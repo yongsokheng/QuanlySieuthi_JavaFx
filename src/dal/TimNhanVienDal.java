@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,17 +31,19 @@ public class TimNhanVienDal {
 
     //Tim theo maNhanVien
     public ResultSet timTheoMaNhanVien(NhanVienDto nhanVienDto) {
-        String sql = "SELECT * FROM NhanVien WHERE maNV =" + nhanVienDto.getMaNhanVien() + " ";
+        String sql = "SELECT * FROM NhanVien WHERE maNV ='" + nhanVienDto.getMaNhanVien() + "' ";
         resultSet = db.loadData(sql);
+        
         return resultSet;
     }
 
     public ResultSet timTheoTenNhanVien(NhanVienDto nhanVienDto) {
-        String sql = "SELECT * FROM NhanVien WHERE tenNhanVien =" + nhanVienDto.getTenNhanVien() + " ";
+        String sql = "SELECT * FROM NhanVien WHERE tenNhanVien ='" + nhanVienDto.getTenNhanVien() + "' ";
         resultSet = db.loadData(sql);
         return resultSet;
     }
 
+    
     public ResultSet hienThiTatCa() {
         String sql = "SELECT * FROM NhanVien  ";
         resultSet = db.loadData(sql);
@@ -53,7 +56,7 @@ public class TimNhanVienDal {
 
             while (resultSet.next()) {
                 String maNhanVien = resultSet.getString("maNV");
-              
+                JOptionPane.showMessageDialog(null, "thanh cong");
                 String tenNhanVien = resultSet.getString("tenNV");
    
                 String soDth = resultSet.getString("soDth");

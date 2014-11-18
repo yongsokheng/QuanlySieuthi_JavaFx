@@ -18,7 +18,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -61,8 +60,9 @@ public class TimNhanVienGuiController implements Initializable {
     
      public boolean validate()
     {
-        boolean maNhanVien=frm.textIsEmtpy(txtMa, "chưa có thông tin");       
-        if(!maNhanVien  ) 
+        boolean maNhanVien=frm.textIsEmtpy(txtMa, "chưa có thông tin"); 
+        boolean tenNhanVien=frm.textIsEmtpy(txtTen, "chưa có thông tin");
+        if(!maNhanVien || !tenNhanVien ) 
             return true;
         return false;
         
@@ -71,7 +71,6 @@ public class TimNhanVienGuiController implements Initializable {
     public void loadData(ResultSet resultSet)
     {
          ma.setCellValueFactory(new PropertyValueFactory("maNhanVien"));
-         JOptionPane.showMessageDialog(null, "thanh cong");
          ten.setCellValueFactory(new PropertyValueFactory("tenNhanVien"));
          sdth.setCellValueFactory(new PropertyValueFactory("dienThoai"));
          moTa.setCellValueFactory(new PropertyValueFactory("moTa"));
@@ -88,36 +87,33 @@ public class TimNhanVienGuiController implements Initializable {
  
         if(validate())
         {
-            nhanVienDto.setMaNhanVien(txtMa.getText().trim());
-           
-            ResultSet resultSet=timNhanVienDal.timTheoMaNhanVien(nhanVienDto);
-           
-            loadData(resultSet);;
+            if(!txtMa.getText().trim().isEmpty()){
+                nhanVienDto.setMaNhanVien(txtMa.getText().trim());
 
+                ResultSet resultSet=timNhanVienDal.timTheoMaNhanVien(nhanVienDto);
+
+                loadData(resultSet);
+            }
+            else {
+               
+                nhanVienDto.setTenNhanVien(txtTen.getText().trim());
+
+                ResultSet resultSet=timNhanVienDal.timTheoTenNhanVien(nhanVienDto);
+
+                loadData(resultSet);
+            }
         }
- 
     }
-    
-    
     @FXML
-    private void handleTimTen(ActionEvent event) 
-    {
-       boolean isTenEmpty=frm.textIsEmtpy(txtTen, "Nhập tên nhà cung cấp");
-       if(!isTenEmpty)
-       {
-           nhanVienDto.setTenNhanVien(txtTen.getText());
-           resultSet=timNhanVienDal.timTheoTenNhanVien(nhanVienDto);
-           loadData(resultSet);
-       }
-        
+    public void handleHienThiTatCa(ActionEvent event){
+        resultSet=timNhanVienDal.hienThiTatCa();
+        loadData(resultSet);
     }
-    
+ 
+    @FXML
      private void handleTimTat(ActionEvent event) 
     {
            resultSet=nhanVienDal.getNhanVien();
            loadData(resultSet);
-      
- 
-    }
-    
+    }    
 }
