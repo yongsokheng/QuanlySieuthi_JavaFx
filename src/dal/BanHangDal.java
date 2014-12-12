@@ -7,11 +7,8 @@ package dal;
 
 import dto.BanHangDto;
 import dto.NhanVienDto;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javax.swing.JOptionPane;
@@ -21,41 +18,32 @@ import javax.swing.JOptionPane;
  * @author asus
  */
 public class BanHangDal {
-    private Connection connection;
-    private Statement statement;
-    private ResultSet resultSet;
-    
-    private final String DRIVER="com.mysql.jdbc.Driver";
-    private final String DATABASE= "jdbc:mysql://localhost/quanlysieuthi";
-    
-    
+   
     DatabaseManager db=new DatabaseManager();
     BanHangDto banHangDto=new BanHangDto();
+    ResultSet resultSet;
+    
     private ObservableList<BanHangDto> data=FXCollections.observableArrayList();
-    
-    
+     
     public ObservableList<BanHangDto> loadData(ResultSet resultSet)
-    {
+    { 
         try {
-                int sTT;
+                int sTT=0;
                 String maSanPham;
                 String tenSanPham;
                 double soLuong;
                 double donGia;
                 String donViTinh;
                 double thanhTien;
-                banHangDto.setThanhTien(10);
-                banHangDto.setsTT(2);
                 while(resultSet.next())
-                {
-                    sTT=resultSet.getInt("sTT");
-                    maSanPham=resultSet.getString("maSanPham");
-                    tenSanPham=resultSet.getString("tenSanPham");
+                {                
+                    maSanPham=resultSet.getString("maHang");
+                    tenSanPham=resultSet.getString("tenHang");
                     soLuong=resultSet.getDouble("soLuong");
-                    donGia=resultSet.getDouble("donGia");
+                    donGia=resultSet.getDouble("giaBan");
                     donViTinh=resultSet.getString("donViTinh");
                     thanhTien=resultSet.getDouble("thanhTien");
-                    data.add(new BanHangDto(sTT,maSanPham,tenSanPham,soLuong,donGia,donViTinh,thanhTien));
+                    data.add(new BanHangDto(++sTT,maSanPham,tenSanPham,soLuong,donGia,donViTinh,thanhTien));
                 }             
                 resultSet.close();
             } catch (SQLException ex) {
@@ -64,29 +52,25 @@ public class BanHangDal {
         return data;   
     }
     
-    public ObservableList<BanHangDto> Data(ResultSet resultSet)
-    {
+    public void loadMaHoaDon(ResultSet resultSet, BanHangDto banHangDto) {
         try {
-                String tenSanPham;
-                double donGia;
-                String donViTinh;
-                
-                while(resultSet.next())    {
-                   
-                    tenSanPham=(resultSet.getString("tenHang"));   
-                    donGia=(resultSet.getDouble("giaBan"));
-                    donViTinh=(resultSet.getString("donViTinh"));
-                    data.add( new BanHangDto(tenSanPham,1,donGia,donViTinh));
-                }      
-                
-                resultSet.close();
-            } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }  
-        return data;
+
+            {
+                while (resultSet.next()) {
+                    if (resultSet.last()) {
+                        banHangDto.setMaHoaDon(resultSet.getString("maHoaDon"));
+                    }
+
+                }
+            }
+
+            resultSet.close();
+        } catch (SQLException ex) {
+
+        }
     }
     
-      public ObservableList<BanHangDto> Data1(ResultSet resultSet,BanHangDto banHangDto)
+      public ObservableList<BanHangDto> loadDataToTextField(ResultSet resultSet,BanHangDto banHangDto)
     {
         try {  
             if(resultSet.isBeforeFirst())  
@@ -99,30 +83,63 @@ public class BanHangDal {
                 }                     
             }
             else{
+                banHangDto.setTenSanPham("");
                 JOptionPane.showMessageDialog(null, "Hang khong tim thay");
             }
                 resultSet.close();
             } catch (SQLException ex) { 
-                JOptionPane.showMessageDialog(null, "Hang khong tim thay");
+ 
         }  
         return data;
     }
     
-   
+
+    public ResultSet getTableData(BanHangDto banHangDto){
     
-    public int themHangVaoHangBan(BanHangDto banHangDto){
-        
-        int result;        
-        String sql="INSERT INTO HangBan VALUES ("+ banHangDto.getMaSanPham()+" ," +banHangDto.getMaHoaDon()+","+banHangDto.getSoLuong()+" ,"+banHangDto.getDonGia()+") ";
+        String sql="SELECT HangBan.maHang,tenHang,soLuong,giaBan,donViTinh,soLuong * donGia as thanhTien FROM HoaDon,HangBan,Hang WHERE HoaDon.soHoaDon=HangBan.soHoaDon AND HangBan.maHang=Hang.maHang";
+        resultSet=db.loadData(sql);
+        return resultSet;
+    }  
+      
+    public int themHangVaoDonHang(BanHangDto banHangDto){
+        int result;
+        //JOptionPane.showMessageDialog(null, banHangDto.getMaHoaDon());
+        String sql="INSERT INTO HoaDon VALUES("+banHangDto.getMaHoaDon()+",'"+ banHangDto.getNgayLapHoaDon()+"','"+banHangDto.getMaNhanVien()+"','"+banHangDto.getMaThe()+"' )";
+        result=db.executeData(sql);       
+        return result;
+    }
+    
+    public int themHangVaoHangBan(BanHangDto banHangDto){     
+        int result;  
+        String sql="INSERT INTO HangBan VALUES ("+banHangDto.getSoLuong()+","+banHangDto.getDonGia()+","+banHangDto.getMaSanPham()+","+banHangDto.getMaHoaDon()+")";
         result= db.executeData(sql);
+        return result;
+    }
+    public int updateKhoSanPham(BanHangDto banHangDto){
+        int result;
+        String sql="UPDATE KhoSanPham SET soLuong=soLuong -"+banHangDto.getSoLuong()+" WHERE maHang="+banHangDto.getMaSanPham()+" AND soLuong>="+banHangDto.getSoLuong()+"";
+        result=db.executeData(sql);
         return result;
     }
     
     
      public ResultSet setData(BanHangDto banHangDto)
     {
-        resultSet=db.loadData("SELECT tenHang,giaBan,donViTinh FROM Hang WHERE maHang="+banHangDto.getMaSanPham()+"");
+        String sql="SELECT tenHang,giaBan,donViTinh FROM Hang WHERE maHang="+banHangDto.getMaSanPham()+"";
+        resultSet=db.loadData(sql);
         return resultSet;
     }
      
+     public ResultSet setMaHoaDon(BanHangDto banHangDto){
+         String sql="SELECT soHoaDon FROM HoaDon ORDER BY soHoaDon";
+         resultSet=db.loadData(sql);
+         return resultSet;
+     }
+     
+     public int deleteData(BanHangDto banHangDto)
+    {
+      String sql="DELETE FROM hoadon WHERE soHoaDon='"+banHangDto.getMaHoaDon()+"'";
+      int result=db.executeData(sql);
+      return result;
+    }
 }

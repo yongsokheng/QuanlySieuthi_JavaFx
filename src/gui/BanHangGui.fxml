@@ -1,11 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BanHangGuiController">
-    
+<AnchorPane id="AnchorPane" prefHeight="607.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BanHangGuiController">
+   <children>
+      <Label layoutX="61.0" layoutY="120.0" text="Mã sản phẩm">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="297.0" layoutY="45.0" text="Bán Hàng" textFill="#5c9ee0">
+         <font>
+            <Font name="Times New Roman Bold" size="38.0" />
+         </font>
+      </Label>
+      <Label layoutX="60.0" layoutY="162.0" text="Tên sản phẩm">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="maSanPham" layoutX="170.0" layoutY="117.0" onKeyPressed="#handleEnterPressed" prefHeight="25.0" prefWidth="133.0" />
+      <TextField fx:id="tenSanPham" layoutX="170.0" layoutY="162.0" prefHeight="25.0" prefWidth="133.0" />
+      <TableView fx:id="tblBanHang" layoutX="52.0" layoutY="285.0" prefHeight="255.0" prefWidth="709.0">
+         <columns>
+            <TableColumn fx:id="colSTT" prefWidth="54.0" text="STT" />
+            <TableColumn fx:id="colMa" prefWidth="115.0" text="Mã sản phẩm" />
+            <TableColumn fx:id="colTenSanPham" prefWidth="133.0" text="Tên sản phẩm" />
+            <TableColumn fx:id="colSoLuong" prefWidth="64.0" text="Số lượng" />
+            <TableColumn fx:id="colDonGia" prefWidth="108.0" text="Đơn giá" />
+            <TableColumn fx:id="colDonViTinh" prefWidth="118.0" text="Đơn vị tính" />
+            <TableColumn fx:id="colThanhTien" prefWidth="116.0" text="Thành tiền" />
+         </columns>
+      </TableView>
+      <Label layoutX="312.0" layoutY="117.0" text="Số lượng">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="307.0" layoutY="161.0" text="Đơn vị tính">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="soLuong" layoutX="390.0" layoutY="120.0" prefHeight="25.0" prefWidth="115.0" />
+      <TextField fx:id="donViTinh" layoutX="390.0" layoutY="162.0" prefHeight="25.0" prefWidth="115.0" />
+      <Button layoutX="273.0" layoutY="246.0" mnemonicParsing="false" onAction="#handleThem" text="Thêm" />
+      <Button layoutX="346.0" layoutY="246.0" mnemonicParsing="false" onAction="#handleButtonXoa" prefHeight="25.0" prefWidth="48.0" text="Xóa" />
+      <TextField layoutX="627.0" layoutY="122.0" prefHeight="25.0" prefWidth="127.0" />
+      <TextField layoutX="627.0" layoutY="162.0" prefHeight="25.0" prefWidth="127.0" />
+      <Label layoutX="512.0" layoutY="161.0" text="Tiền trả lại">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="512.0" layoutY="121.0" text="Tiền khách trả">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="512.0" layoutY="203.0" text="Tiền triết khẩu">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <TextField layoutX="627.0" layoutY="200.0" prefHeight="25.0" prefWidth="127.0" />
+      <Label layoutX="61.0" layoutY="58.0" text="so hoa don" />
+      <Label layoutX="142.0" layoutY="58.0" text="Label" />
+      <Label layoutX="61.0" layoutY="204.0" text="don gia">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <TextField fx:id="donGia" layoutX="170.0" layoutY="204.0" prefHeight="25.0" prefWidth="133.0" />
+      <DatePicker fx:id="date" layoutX="627.0" layoutY="246.0" prefHeight="25.0" prefWidth="127.0" />
+      <Button fx:id="btnThanhTien" layoutX="419.0" layoutY="555.0" mnemonicParsing="false" onAction="#thanhTien" prefHeight="25.0" prefWidth="78.0" text="Thanh Tien" />
+      <Button fx:id="inHoaDon" layoutX="536.0" layoutY="555.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="In Hoa Don" />
+   </children>
 </AnchorPane>
