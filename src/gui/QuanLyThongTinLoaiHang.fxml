@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="473.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.QuanLyThongTinLoaiHang">
+   <children>
+      <Label layoutX="176.0" layoutY="37.0" text="Quản Lý Thông Tin Loại Hàng" textFill="#0fae51">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="53.0" layoutY="89.0" text="Mã Loại Hàng" />
+      <Label layoutX="53.0" layoutY="129.0" text="Tên Loại Hàng" />
+      <TextField fx:id="txtMaLoaiHang" layoutX="176.0" layoutY="85.0" />
+      <TextField fx:id="txtTenLoaiHang" layoutX="176.0" layoutY="125.0" />
+      <TableView fx:id="tbTTLoaiHang" layoutX="24.0" layoutY="166.0" prefHeight="200.0" prefWidth="553.0">
+        <columns>
+          <TableColumn fx:id="maLoaiHang" prefWidth="272.0" text="Mã Loại Hàng" />
+          <TableColumn fx:id="tenLoaiHang" prefWidth="280.0" text="Tên Loại Hàng" />
+        </columns>
+      </TableView>
+      <Button layoutX="81.0" layoutY="396.0" mnemonicParsing="false" onAction="#handleButtonThemMoi" text="Thêm Mới" />
+      <Button layoutX="216.0" layoutY="396.0" mnemonicParsing="false" onAction="#handleButtonUpdate" prefHeight="25.0" prefWidth="70.0" text="Update" />
+      <Button layoutX="342.0" layoutY="396.0" mnemonicParsing="false" onAction="#handleButtonXoa" prefHeight="25.0" prefWidth="70.0" text="Delete" />
+      <Button layoutX="472.0" layoutY="396.0" mnemonicParsing="false" onAction="#handleButtonLuu" prefHeight="25.0" prefWidth="70.0" text="Save" />
+   </children>
+</AnchorPane>
