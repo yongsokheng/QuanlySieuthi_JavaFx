@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="510.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TimKiemHoiVienController">
+   <children>
+      <Label layoutX="273.0" layoutY="25.0" text="Tìm kiếm Hội Viên" textFill="#2db20c">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="84.0" layoutY="97.0" text="Mã Hội Viên" />
+      <Label layoutX="84.0" layoutY="134.0" text="Họ Tên Hội Viên" />
+      <TextField fx:id="txtmaHoiVien" layoutX="188.0" layoutY="93.0" />
+      <TextField fx:id="txthoTenHoiVien" layoutX="188.0" layoutY="130.0" />
+      <Button layoutX="369.0" layoutY="93.0" mnemonicParsing="false" onAction="#handleButtonHienThiMaHoiVien" prefHeight="25.0" prefWidth="191.0" text="Tìm Kiếm Mã Hội Viên" />
+      <Button layoutX="369.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleButtonHienThiHoTenHoiVien" prefHeight="25.0" prefWidth="191.0" text="Tìm Kiếm Họ Tên Hội Viên" />
+      <Button layoutX="594.0" layoutY="93.0" mnemonicParsing="false" onAction="#handleButtonHienTatCaHoiVien" text="Hiển Thị Tất Cả Hội Viên" />
+      <TableView fx:id="tableHoiVien" layoutX="10.0" layoutY="196.0" prefHeight="304.0" prefWidth="783.0">
+        <columns>
+          <TableColumn fx:id="maHoiVien" prefWidth="108.0" text="Mã Hội Viên " />
+          <TableColumn fx:id="hoTenHoiVien" minWidth="0.0" prefWidth="164.0" text="Họ Tên Hội Viên" />
+            <TableColumn fx:id="gioiTinh" prefWidth="58.0" text="Giới Tính" />
+            <TableColumn fx:id="dienThoai" prefWidth="129.0" text="Điện Thoại " />
+            <TableColumn fx:id="tenCoQuan" prefWidth="171.0" text="Tên Cơ Quan" />
+            <TableColumn fx:id="diaChi" prefWidth="152.0" text="Địa Chỉ" />
+        </columns>
+      </TableView>
+      <Button layoutX="594.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleButtonExit" prefHeight="25.0" prefWidth="145.0" text="Exit" />
+   </children>
+</AnchorPane>
