@@ -83,56 +83,53 @@ public class QuanLyHoiVien implements Initializable {
     
    dalHoiVien dalHV=new dalHoiVien();
    dtoHoiVien dtoHv=new dtoHoiVien();
+    FormValidation frm=new FormValidation();
     
-    public int validate()
+   public void loadData()
     {
-       if(txtHoTenHoiVien.getText().equals("") || txtMaHoiVien.getText().equals("") || cbGioiTinh.equals("") || txtDienThoai.equals("") || txtDiaChi.equals("") || txtTenCoQuan.equals("")) 
-            return 0;
-       return 1;
-       
+         maHoiVien.setCellValueFactory(new PropertyValueFactory("maHoiVien"));
+         hoTenHoiVien.setCellValueFactory(new PropertyValueFactory("hoTenHoiVien"));
+         gioiTinhHoiVien.setCellValueFactory(new PropertyValueFactory("gioiTinh"));
+         dienThoai.setCellValueFactory(new PropertyValueFactory("dienThoai"));
+         tenCoQuan.setCellValueFactory(new PropertyValueFactory("tenCoQuan"));
+         diaChi.setCellValueFactory(new PropertyValueFactory("diaChi"));
+         
+         quanLyHoiVien.getItems().clear();
+         quanLyHoiVien.setItems(dalHV.loadData(dalHV.getHV()));
     }
-    
-    @FXML
-    private void handleButtonThemMoi(ActionEvent event) {
-    
+    public void themmoi()
+    {
         txtMaHoiVien.setText("");
         txtHoTenHoiVien.setText("");
         txtDienThoai.setText("");
         txtDiaChi.setText("");
-        txtTenCoQuan.setText("");
-       
-
-        
+        txtTenCoQuan.setText(""); 
         cbGioiTinh.getSelectionModel().select("");
     }
     
-    
-    public void loadData()
+    public boolean validate()
     {
-        maHoiVien.setCellValueFactory(new PropertyValueFactory("maHoiVien"));
-        hoTenHoiVien.setCellValueFactory(new PropertyValueFactory("hoTenHoiVien"));
-        gioiTinhHoiVien.setCellValueFactory(new PropertyValueFactory("gioiTinh"));
-        dienThoai.setCellValueFactory(new PropertyValueFactory("dienThoai"));
-        tenCoQuan.setCellValueFactory(new PropertyValueFactory("tenCoQuan"));
-        diaChi.setCellValueFactory(new PropertyValueFactory("diaChi"));
-         
-         quanLyHoiVien.getItems().clear();
-         quanLyHoiVien.setItems(dalHV.loadData());
+        boolean maHVEmpty=frm.textIsEmtpy(txtMaHoiVien, "Vui lòng nhập Mã Hội Viên");
+        boolean hoTenHVEmpty=frm.textIsEmtpy(txtHoTenHoiVien, "Vui lòng nhập Họ tên Hội viên");
+        boolean soDtEmpty=frm.textIsEmtpy(txtDienThoai, "Vui lòng nhập số điện thoại");
+        boolean soDtCorrect=frm.textIsPhoneNumber(txtDienThoai, "Số điện thoại không đúng.");
+        boolean diaChiEmpyt=frm.textIsEmtpy(txtDiaChi, "Vui lòng nhập địa chỉ");
+        boolean tenCoQuanEmpty=frm.textIsEmtpy(txtTenCoQuan, "Vui lòng nhập tên cơ quan");
+        
+        if(!maHVEmpty && !hoTenHVEmpty && !soDtEmpty && soDtCorrect && !diaChiEmpyt && !tenCoQuanEmpty)
+          return true;
+        return false;
     }
-   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
-        
-      
-        
              loadData();
              
             // Handle ListView selection changes.
         
-             quanLyHoiVien.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                if( quanLyHoiVien.getSelectionModel().getSelectedIndex()>=0)
+            quanLyHoiVien.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                if(quanLyHoiVien.getSelectionModel().getSelectedIndex()>=0)
                 {
                     txtMaHoiVien.setText(newValue.getMaHoiVien());
                     txtHoTenHoiVien.setText(newValue.getHoTenHoiVien());
@@ -143,7 +140,6 @@ public class QuanLyHoiVien implements Initializable {
                 }
             
          });
-             
        ObservableList<String> options = FXCollections.observableArrayList();
        options.add("Nam");
        options.add("Nu");
@@ -151,31 +147,30 @@ public class QuanLyHoiVien implements Initializable {
       
     } 
     
-     @FXML
-     private void handleButtonLuu(ActionEvent event) {
-            if( validate()==1 )
+    @FXML
+    private void handleButtonLuu(ActionEvent event) 
+    {
+        
+            if(validate())
             {
                 dtoHv.setMaHoiVien(txtMaHoiVien.getText());
                 dtoHv.setHoTenHoiVien(txtHoTenHoiVien.getText());
                 dtoHv.setGioiTinh(cbGioiTinh.getSelectionModel().getSelectedItem().toString());
-                dtoHv.setDiaChi(txtDiaChi.getText());
                 dtoHv.setDienThoai(txtDienThoai.getText());
+                dtoHv.setDiaChi(txtDiaChi.getText());
                 dtoHv.setTenCoQuan(txtTenCoQuan.getText());
 
-                if( dalHV.saveData(dtoHv) > 0 )
+                if(dalHV.saveData(dtoHv)>0)
                 {
-                  //  loadData();
-                    JOptionPane.showMessageDialog(null, "Lưu thành công");
                     loadData();
+                    themmoi();
+                    JOptionPane.showMessageDialog(null, "Lưu thành công");
                 }
             }
-            else
-               JOptionPane.showMessageDialog(null, "MãHộiViên hoặc HọTênHộiViên hoặc Giới tính hoặc Điện Thoại hoặc Địa chỉ hoặc Tên cơ quản  không thể trống"); 
+         
     }
-     
-     
-     
-     @FXML
+    
+    @FXML
     private void handleButtonXoa(ActionEvent event) 
     {
       int i=quanLyHoiVien.getSelectionModel().getSelectedIndex();
@@ -183,10 +178,10 @@ public class QuanLyHoiVien implements Initializable {
       if(i>=0)
       {
          dtoHv.setMaHoiVien(quanLyHoiVien.getSelectionModel().getSelectedItem().getMaHoiVien());
-         if(dalHV.deleteData(dtoHv) > 0)
+         if(dalHV.deleteData(dtoHv)>0)
         {
             loadData();
-            
+            themmoi();
             JOptionPane.showMessageDialog(null, "Xóa thành công");
         }
           
@@ -195,43 +190,40 @@ public class QuanLyHoiVien implements Initializable {
           JOptionPane.showMessageDialog(null, "Hãy chọn một sản phẩm để xóa.");
          
     }
-     
-     
-   
-    @FXML
+     @FXML
     private void handleButtonUpdate(ActionEvent event) 
     {
       int i=quanLyHoiVien.getSelectionModel().getSelectedIndex();
       
       if(i>=0)
       {
-            
-               dtoHv.setMaHoiVien(txtMaHoiVien.getText());
-               dtoHv.setHoTenHoiVien(txtHoTenHoiVien.getText());
-               dtoHv.setGioiTinh(cbGioiTinh.getSelectionModel().getSelectedItem().toString());
-               dtoHv.setDienThoai(txtDienThoai.getText());
+            if(validate())
+            {
+                dtoHv.setMaHoiVien(txtMaHoiVien.getText());
+                dtoHv.setHoTenHoiVien(txtHoTenHoiVien.getText());
+                dtoHv.setGioiTinh(cbGioiTinh.getSelectionModel().getSelectedItem().toString());
+                dtoHv.setDienThoai(txtDienThoai.getText());
                 dtoHv.setTenCoQuan(txtTenCoQuan.getText());
                 dtoHv.setDiaChi(txtDiaChi.getText());
                String ma=quanLyHoiVien.getSelectionModel().getSelectedItem().getMaHoiVien();
 
-               if(dalHV.updateData(dtoHv, ma) >0)
+               if(dalHV.updateData(dtoHv,ma)>0)
               {
                   loadData();
-                 
+                  themmoi();
                   JOptionPane.showMessageDialog(null, "Update thành công");
               }
 
-            
+            }
             
       }
       else
-            JOptionPane.showMessageDialog(null, "Hãy chọn một sản phẩm để Update.");
+            JOptionPane.showMessageDialog(null, "Hãy chọn một sản phẩm để xóa.");
   
     }
-    
-    
-    
-    
-    
-    
+    @FXML
+    private void handleButtonThemMoi(ActionEvent event) 
+    {
+        themmoi();
+    }
 }
