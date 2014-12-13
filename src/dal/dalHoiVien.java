@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 public class dalHoiVien {
     
     DatabaseManager db=new DatabaseManager();
-    dtoHoiVien dtoHV = new dtoHoiVien();
+  //  dtoHoiVien dtoHV = new dtoHoiVien();
     
     
     ResultSet resultSet;
@@ -29,7 +29,7 @@ public class dalHoiVien {
     
     
     
-    public ObservableList<dtoHoiVien> loadData()
+    public ObservableList<dtoHoiVien> loadData(ResultSet resultSet)
     {
         try {
             
@@ -42,7 +42,7 @@ public class dalHoiVien {
                
                
                
-                resultSet=db.loadData("SELECT * FROM hoivien");
+           //     resultSet=db.loadData("SELECT * FROM hoivien");
                 while(resultSet.next())
                 {
                     maHoiVien = resultSet.getString("maHoiVien");
@@ -51,6 +51,7 @@ public class dalHoiVien {
                     dienThoai=resultSet.getString("DienThoai");
                     diaChi=resultSet.getString("diaChi");
                     tenCoQuan = resultSet.getString("TenCoQuan");
+                    
                     
                   data.add(new dtoHoiVien(maHoiVien,hoTenHoiVien,gioiTinh,dienThoai,diaChi,tenCoQuan));
                 }
@@ -64,10 +65,32 @@ public class dalHoiVien {
     
     }
     
+     public ResultSet getHV()
+    {
+        resultSet=db.loadData("SELECT * FROM hoivien");
+        return resultSet;
+    }
+    
+    public ResultSet timHVtheoMa(dtoHoiVien dtoHV)
+    {
+        resultSet=db.loadData("SELECT * FROM hoivien WHERE maHoiVien='"+dtoHV.getMaHoiVien()+"'");
+        return resultSet;
+    }
+    
+    public ResultSet timHVtheoTen(dtoHoiVien dtoHV)
+    {
+        resultSet=db.loadData("SELECT * FROM hoivien WHERE tenHoiVien like '%"+dtoHV.getHoTenHoiVien()+"%'");
+        return resultSet;
+    }
     
     public int saveData(dtoHoiVien dtoHoiVien)
     {
-        String sql="INSERT INTO hoivien VALUES('"+ dtoHoiVien.getMaHoiVien()+"','"+ dtoHoiVien.getHoTenHoiVien()+"','"+ dtoHoiVien.getGioiTinh()+"','"+ dtoHoiVien.getDienThoai()+ "','"+ dtoHoiVien.getTenCoQuan() + "','"+ dtoHoiVien.getDiaChi() +"')";
+        String sql="INSERT INTO hoivien VALUES('"+ dtoHoiVien.getMaHoiVien()+
+                                               "','"+ dtoHoiVien.getHoTenHoiVien()+
+                                               "','"+ dtoHoiVien.getGioiTinh()+
+                                                "','"+ dtoHoiVien.getDienThoai()+ 
+                                                "','"+ dtoHoiVien.getTenCoQuan() + 
+                                                "','" + dtoHoiVien.getDiaChi() +"')";
         int result=db.executeData(sql);
         return result;
     }
@@ -81,7 +104,13 @@ public class dalHoiVien {
     
    public int updateData(dtoHoiVien dtoHoiVien, String ma)
    {
-      String sql="UPDATE hoivien SET maHoiVien='"+ dtoHoiVien.getMaHoiVien()+"',tenHoiVien='"+ dtoHoiVien.getHoTenHoiVien()+"', GoiTinh='"+dtoHoiVien.getGioiTinh()+"',diaChi='"+dtoHoiVien.getDiaChi()+"',DienThoai='"+dtoHoiVien.getDienThoai() + "',TenCoQuan='"+dtoHoiVien.getTenCoQuan() + "' WHERE maHoiVien='"+ma+"'";
+      String sql="UPDATE hoivien SET maHoiVien='"+ dtoHoiVien.getMaHoiVien()+
+                                  "',tenHoiVien='"+ dtoHoiVien.getHoTenHoiVien()+
+                                  "', GoiTinh='"+dtoHoiVien.getGioiTinh()+
+                                  "',diaChi='"+dtoHoiVien.getDiaChi()+
+                                  "',DienThoai='"+dtoHoiVien.getDienThoai() +
+                                  "',TenCoQuan='"+dtoHoiVien.getTenCoQuan() + 
+                                  "' WHERE maHoiVien='"+ma+"'";
       int result=db.executeData(sql);
       return result;
    }
