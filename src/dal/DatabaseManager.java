@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 public class DatabaseManager {
     
-    private Connection connection;
+    public Connection connection;
     private Statement statement;
     private ResultSet resultSet;
     
@@ -24,9 +24,11 @@ public class DatabaseManager {
     {
         try {
             Class.forName(DRIVER);
-            
+            connection=DriverManager.getConnection(DATABASE,"root","");
         } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
       
     }
@@ -34,7 +36,7 @@ public class DatabaseManager {
     public ResultSet loadData(String sqlCode)
     {
         try {
-            connection=DriverManager.getConnection(DATABASE,"root","12345");
+            connection=DriverManager.getConnection(DATABASE,"root","");
             statement=connection.createStatement();
             resultSet=statement.executeQuery(sqlCode);
           
@@ -51,7 +53,7 @@ public class DatabaseManager {
     {
         int result=0;
         try {
-            connection=DriverManager.getConnection(DATABASE,"root","12345");
+            connection=DriverManager.getConnection(DATABASE,"root","");
             statement=connection.createStatement();
             result=statement.executeUpdate(sqlCode);
             statement.close();
