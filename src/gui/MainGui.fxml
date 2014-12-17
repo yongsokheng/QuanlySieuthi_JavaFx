@@ -7,28 +7,51 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="657.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
-      <MenuBar prefHeight="25.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuBar fx:id="menu" prefHeight="25.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem fx:id="login" mnemonicParsing="false" onAction="#handleMenuLogin" text="Log in" />
+              <MenuItem mnemonicParsing="false" onAction="#handleMenuClose" text="Close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu fx:id="edit" mnemonicParsing="false" text="Edit">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#handleMenuNhaCungCap" text="Nhà Cung Cấp" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNhanVien" text="Nhân Viên" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemHoiVien" text="Hội Viên" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemHang" text="Hàng" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemLoaiHang" text="Loại Hàng" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemDonNhapHang" text="Lập đơn nhập hàng" />
             </items>
           </Menu>
+            <Menu fx:id="timKiem" mnemonicParsing="false" text="Tìm kiếm">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleMenuItemTimNCC" text="Tìm nhà cung cấp" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemTimNhanVien" text="Tìm nhân viên" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemTimDonNhapHang" text="Tìm đơn nhập hàng" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemTimHang" text="Tìm hàng" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemTimHoiVien" text="Tìm Hội viên" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemTimLoaiHang" text="Tìm Loại hàng" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Report">
+              <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemRpHoiVien" text="Danh sách Hội viên" />
+                <MenuItem mnemonicParsing="false" onAction="#handleMenuItemRpNcc" text="Danh sách Nhà cung cấp" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemRpDonHang" text="Report Đơn Nhập Hàng" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemRpHang" text="Danh sách Hàng Hóa" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
-      <AnchorPane fx:id="ParentControl" layoutX="86.0" layoutY="10.0" prefHeight="380.0" prefWidth="483.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="10.0" />
+      <AnchorPane fx:id="ParentControl" layoutX="22.0" layoutY="39.0" prefHeight="563.0" prefWidth="768.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="39.0" />
    </children>
 </AnchorPane>
