@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="61b229ba-eb17-47a6-a1e0-686b8c20d179">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     hoivien.`maHoiVien` AS hoivien_maHoiVien,
+     hoivien.`tenHoiVien` AS hoivien_tenHoiVien,
+     hoivien.`GoiTinh` AS hoivien_GoiTinh,
+     hoivien.`DienThoai` AS hoivien_DienThoai,
+     hoivien.`TenCoQuan` AS hoivien_TenCoQuan,
+     hoivien.`diaChi` AS hoivien_diaChi
+FROM
+     `hoivien` hoivien]]>
+	</queryString>
+	<field name="hoivien_maHoiVien" class="java.lang.String"/>
+	<field name="hoivien_tenHoiVien" class="java.lang.String"/>
+	<field name="hoivien_GoiTinh" class="java.lang.String"/>
+	<field name="hoivien_DienThoai" class="java.lang.String"/>
+	<field name="hoivien_TenCoQuan" class="java.lang.String"/>
+	<field name="hoivien_diaChi" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="-15" y="13" width="586" height="33" forecolor="#0017F5" uuid="2e9eba04-d1cf-4071-b816-9d41421bd4dc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Danh Sách Hội Viên]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="47cbdee3-50eb-4ced-9260-a5f2c68bf143"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="92" height="15" forecolor="#0015DC" uuid="833dbd55-cb5d-4e71-9e79-4503d465bbb4"/>
+				<text><![CDATA[Mã Hội Viên]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="92" y="19" width="92" height="15" forecolor="#0015DC" uuid="4f17cf77-ffde-4808-9356-77f27a14a345"/>
+				<text><![CDATA[Tên]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="184" y="19" width="92" height="15" forecolor="#0015DC" uuid="00f7f161-9604-45fa-bd3e-43633d73aedc"/>
+				<text><![CDATA[Giới Tính]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="19" width="92" height="15" forecolor="#0015DC" uuid="01dd5b13-6b5a-4720-a76b-c4187f32c820"/>
+				<text><![CDATA[Điện thoại]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="368" y="19" width="92" height="15" forecolor="#0015DC" uuid="324230b9-2c93-4e48-92b9-5ca38173fd28"/>
+				<text><![CDATA[Tên cơ quan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="460" y="19" width="92" height="15" forecolor="#0015DC" uuid="b22da98a-da6a-4e88-aae9-f29b25323358"/>
+				<text><![CDATA[Địa chỉ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="f7abc991-b4c2-4335-ad32-e05585de30c9"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="92" height="15" uuid="41bc5919-e640-4e18-b09e-a549808fc857"/>
+				<textFieldExpression><![CDATA[$F{hoivien_maHoiVien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="92" y="0" width="92" height="15" uuid="a5aaa602-cf20-4dc4-8a7b-e2d6016dad28"/>
+				<textFieldExpression><![CDATA[$F{hoivien_tenHoiVien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="184" y="0" width="92" height="15" uuid="a3fb728c-b9ff-4e8b-8f03-8298c9be566c"/>
+				<textFieldExpression><![CDATA[$F{hoivien_GoiTinh}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="276" y="0" width="92" height="15" uuid="48a1e938-8594-48fc-ae6b-dc4059261d6f"/>
+				<textFieldExpression><![CDATA[$F{hoivien_DienThoai}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="368" y="0" width="92" height="15" uuid="a4c12f20-d84d-4515-90db-96fd394667ed"/>
+				<textFieldExpression><![CDATA[$F{hoivien_TenCoQuan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="460" y="0" width="92" height="15" uuid="de437191-1749-4835-8ca7-a137189a41c1"/>
+				<textFieldExpression><![CDATA[$F{hoivien_diaChi}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="34055f2d-0fbe-4557-8e32-3300f8da42fa"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="9bbfc287-9431-41f2-a232-65b7682923a9"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="b2813b1b-60b7-43ca-aa39-8d44215340d7"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="9e662171-7ebd-4b2a-a6f6-9b89a91ee3ef"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
