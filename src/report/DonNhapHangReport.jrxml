@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e488b9e5-40c1-4d33-9800-ea9aa49bea78">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="paraTo" class="java.lang.String"/>
+	<parameter name="paraFrom" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     donhang.`maDonHang` AS donhang_maDonHang,
+     donhang.`ngayDatHang` AS donhang_ngayDatHang,
+     hang.`maHang` AS hang_maHang,
+     hang.`tenHang` AS hang_tenHang,
+     hangnhap.`maDonHang` AS hangnhap_maDonHang,
+     hangnhap.`maHang` AS hangnhap_maHang,
+     hangnhap.`soLuong` AS hangnhap_soLuong
+FROM
+     `donhang` donhang INNER JOIN `hangnhap` hangnhap ON donhang.`maDonHang` = hangnhap.`maDonHang`
+     INNER JOIN `hang` hang ON hangnhap.`maHang` = hang.`maHang`
+WHERE (donhang.ngayDatHang BETWEEN $P{paraTo} 
+AND $P{paraFrom})]]>
+	</queryString>
+	<field name="donhang_maDonHang" class="java.lang.String"/>
+	<field name="donhang_ngayDatHang" class="java.sql.Date"/>
+	<field name="hang_maHang" class="java.lang.String"/>
+	<field name="hang_tenHang" class="java.lang.String"/>
+	<field name="hangnhap_maDonHang" class="java.lang.String"/>
+	<field name="hangnhap_maHang" class="java.lang.String"/>
+	<field name="hangnhap_soLuong" class="java.lang.Double"/>
+	<group name="donhang_ngayDatHang">
+		<groupExpression><![CDATA[$F{donhang_ngayDatHang}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField pattern="dd-MMM-yyyy">
+					<reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#ED0000" uuid="752cf5a6-4bc0-4be6-b165-a5f4356286bf"/>
+					<textElement verticalAlignment="Middle">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{donhang_ngayDatHang}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="13" width="47" height="24" forecolor="#CCCCCC" backcolor="#FF0000" uuid="8c728cc3-ca87-4851-ba84-3ad4ea0ae617"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="-13" y="0" width="591" height="33" forecolor="#1600E4" uuid="65665cd7-ae6a-441f-9f87-cc0fc5ded4c5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Report Đơn Nhập Hàng]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="82" y="50" width="100" height="20" forecolor="#0007EF" uuid="298f399a-8b68-4841-ba8f-dc10901adeca"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{paraTo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="228" y="50" width="138" height="20" forecolor="#0007EF" uuid="309773e0-dbc1-41db-8fb3-4d73763353b1"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{paraFrom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="182" y="50" width="46" height="20" forecolor="#1500DE" uuid="ce6cb471-dd74-422e-9faa-23ba13d95143"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Đến:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="50" width="46" height="20" forecolor="#2900B6" uuid="fe8e63a3-9fe4-47b6-89d2-319f76548f7e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Từ: ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="6d53f99a-3507-4684-a36c-1457d62f830d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="119" height="15" forecolor="#0202DF" uuid="9f9041ee-5841-4d30-8051-3c7c5764c092"/>
+				<text><![CDATA[Mã Đơn]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="119" y="19" width="121" height="15" forecolor="#0202DF" uuid="0f08188e-9f69-46f7-93d9-36f0c565be15"/>
+				<text><![CDATA[Mã Hàng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="240" y="19" width="174" height="15" forecolor="#0202DF" uuid="6ca6a42d-427c-407d-9e8d-10d9b55ecc03"/>
+				<text><![CDATA[Tên Hàng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="414" y="19" width="138" height="15" forecolor="#0202DF" uuid="9b0d2d5f-389c-4bc4-b757-b34ba740250e"/>
+				<text><![CDATA[Số lượng]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="71cfaac1-c781-4d3f-a4a6-4a06c8b59b42"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="119" height="15" uuid="d06e6501-75af-4b89-8953-950868f13771"/>
+				<textFieldExpression><![CDATA[$F{donhang_maDonHang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="119" y="0" width="121" height="15" uuid="7c391c0e-453a-4725-b6cd-5dc9a65e0bac"/>
+				<textFieldExpression><![CDATA[$F{hang_maHang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="240" y="1" width="174" height="15" uuid="10546ce2-8208-4619-a5d3-d307baa64990"/>
+				<textFieldExpression><![CDATA[$F{hang_tenHang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="414" y="0" width="138" height="15" uuid="191e4fe1-a3e9-4ffb-a5cd-0850b2c93cbd"/>
+				<textFieldExpression><![CDATA[$F{hangnhap_soLuong}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="a8303b20-5143-418f-80be-cce016c26c8b"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="e423d450-f250-4a02-9cab-bfdd37fd288c"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="16e71f5a-9d8a-4dd8-8bfb-8b8c2915044f"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="faaf2181-cdb8-46d2-a76c-979e7907e60d"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
