@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="61d9590b-5006-421e-8161-46e06d3bf35f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString>
+		<![CDATA[SELECT
+     nhacungcap.`maNCC` AS nhacungcap_maNCC,
+     nhacungcap.`tenNCC` AS nhacungcap_tenNCC,
+     nhacungcap.`diaChi` AS nhacungcap_diaChi,
+     nhacungcap.`dienThoai` AS nhacungcap_dienThoai
+FROM
+     `nhacungcap` nhacungcap]]>
+	</queryString>
+	<field name="nhacungcap_maNCC" class="java.lang.String"/>
+	<field name="nhacungcap_tenNCC" class="java.lang.String"/>
+	<field name="nhacungcap_diaChi" class="java.lang.String"/>
+	<field name="nhacungcap_dienThoai" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="-17" y="16" width="590" height="33" forecolor="#0014D0" uuid="723d24ee-32d2-492d-b359-063af42ac9ba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Danh sách nhà cung cấp]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="6d726424-4fed-41e2-b2ef-4cc1dc26d4a5"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="138" height="15" forecolor="#0000CC" uuid="4e8e0d3d-f7bc-497c-94b0-06c78d13ec8d"/>
+				<text><![CDATA[Mã NCC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="138" y="19" width="138" height="15" forecolor="#0000CC" uuid="75b63a23-694a-443a-a00b-2f15bb31e75b"/>
+				<text><![CDATA[Tên NCC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="19" width="138" height="15" forecolor="#0000CC" uuid="412d5f7f-95f7-4d3b-93f0-8f4416293289"/>
+				<text><![CDATA[Địa chỉ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="414" y="19" width="138" height="15" forecolor="#0000CC" uuid="24dbd997-0740-447a-8ba0-58931794bf7f"/>
+				<text><![CDATA[Điện thoại]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="daede55c-f058-4e49-ba23-593e2670a85b"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="138" height="15" uuid="1c4e6cb5-a119-4950-b779-ee38a5295ea9"/>
+				<textFieldExpression><![CDATA[$F{nhacungcap_maNCC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="138" y="0" width="138" height="15" uuid="777c4abd-0e48-4e14-876f-ff013ccea1ae"/>
+				<textFieldExpression><![CDATA[$F{nhacungcap_tenNCC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="276" y="0" width="138" height="15" uuid="5321479d-0bdb-4179-b151-71d8b582b53e"/>
+				<textFieldExpression><![CDATA[$F{nhacungcap_diaChi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="414" y="0" width="138" height="15" uuid="20b28924-22dc-40ae-88d7-d8754f5cd563"/>
+				<textFieldExpression><![CDATA[$F{nhacungcap_dienThoai}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="20a9f377-1a5a-4ef0-92ed-f5670f223900"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="3f068b39-6b3e-4d65-bbb2-741babac37a4"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="39ac34d6-7382-40d2-9308-42e41b0fded4"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="03a7886d-1b14-478e-8f23-556b70f6ee31"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
